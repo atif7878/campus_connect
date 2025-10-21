@@ -1,0 +1,300 @@
+<!-- login.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'css/auth_style.css' %}">
+    <style>
+        /* Additional CSS for better error handling */
+        .error-message {
+            color: #dc3545;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+        .error-message.show {
+            display: block;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-input-wrapper {
+            position: relative;
+        }
+        .password-toggle {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        
+        /* Input error styling */
+        input.error, select.error {
+            border-color: #dc3545 !important;
+            box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25) !important;
+        }
+        input.valid, select.valid {
+            border-color: #28a745 !important;
+            box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25) !important;
+        }
+        
+        .form-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .forgot-password {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-wrapper">
+            <div class="auth-side auth-form-side">
+                <div class="form-header">
+                    <h2>Welcome Back</h2>
+                    <p>Sign in to your account</p>
+                </div>
+
+                <!-- Fake hidden fields to trick browser autofill -->
+                <div style="display: none;">
+                    <input type="text" name="fakeusername">
+                    <input type="password" name="fakepassword">
+                </div>
+
+                <form method="post" action="{% url 'login' %}" id="loginForm" class="auth-form" novalidate autocomplete="off">
+                    {% csrf_token %}
+                    
+                    <!-- Email Field -->
+                    <div class="form-group">
+                        <label for="id_username" class="form-label">Email Address</label>
+                        <div class="form-input-wrapper">
+                            <input type="email" 
+                                   name="username" 
+                                   id="id_username" 
+                                   class="form-control {% if form.username.errors %}error{% endif %}"
+                                   placeholder="Email"
+                                   value="{{ form.username.value|default:'' }}"
+                                   autocomplete="email"
+                                   autocomplete="email"
+                                   required>
+                        </div>
+                        {% if form.username.errors %}
+                            <div class="error-message show">
+                                {% for error in form.username.errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            <div class="error-message" id="emailError"></div>
+                        {% endif %}
+                    </div>
+
+                    <!-- Password Field -->
+                    <div class="form-group">
+                        <label for="id_password" class="form-label">Password</label>
+                        <div class="form-input-wrapper">
+                            <input type="password" 
+                                   name="password" 
+                                   id="id_password" 
+                                   class="form-control {% if form.password.errors %}error{% endif %}"
+                                   placeholder="Password"
+                                   autocomplete="password"
+                                   required>
+                            <button type="button" class="password-toggle" onclick="togglePassword('id_password')">👁️</button>
+                        </div>
+                        {% if form.password.errors %}
+                            <div class="error-message show">
+                                {% for error in form.password.errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            <div class="error-message" id="passwordError"></div>
+                        {% endif %}
+                    </div>
+
+                    {% if form.non_field_errors %}
+                        <div class="error-message show" style="margin-bottom: 20px; display: block;">
+                            {% for error in form.non_field_errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
+                    <div class="form-options">
+                        <!-- <label class="checkbox-wrapper">
+                            <div class="checkbox" id="rememberCheckbox"></div>
+                            <span>Remember me</span>
+                        </label> -->
+                        <a href="#" class="forgot-password">Forgot password?</a>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Sign In</button>
+                </form>
+
+                <div class="auth-toggle">
+                    Don't have an account? <a href="{% url 'signup' %}">Sign up</a>
+                </div>
+            </div>
+
+            <div class="auth-side auth-info-side">
+                <div class="auth-info-content">
+                    <h2>Welcome Back!</h2>
+                    <p>Continue your journey with us</p>
+                    <div class="auth-features">
+                        <div class="feature-item">
+                            <div class="feature-icon">🔒</div>
+                            <span>Secure & Encrypted</span>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">⚡</div>
+                            <span>Fast & Reliable</span>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">🎯</div>
+                            <span>Easy to Use</span>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">🌍</div>
+                            <span>Global Access</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Password toggle function
+        function togglePassword(inputId) {
+            const input = document.getElementById(inputId);
+            const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+            input.setAttribute('type', type);
+        }
+
+        // Clear autofilled values on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Clear any autofilled values after a short delay
+            setTimeout(() => {
+                const inputs = document.querySelectorAll('input[type="email"], input[type="password"]');
+                inputs.forEach(input => {
+                    // For fresh page loads, clear if it seems autofilled
+                    if (input.value && !input.hasAttribute('data-user-input')) {
+                        input.value = '';
+                    }
+                });
+            }, 100);
+
+            // Mark fields when user interacts with them
+            document.querySelectorAll('input').forEach(input => {
+                input.addEventListener('input', function() {
+                    this.setAttribute('data-user-input', 'true');
+                });
+            });
+
+            // Real-time validation
+            const emailInput = document.getElementById('id_username');
+            const passwordInput = document.getElementById('id_password');
+
+            // Email validation
+            if (emailInput) {
+                emailInput.addEventListener('input', validateEmail);
+                emailInput.addEventListener('blur', validateEmail);
+            }
+
+            // Password validation
+            if (passwordInput) {
+                passwordInput.addEventListener('input', validatePassword);
+                passwordInput.addEventListener('blur', validatePassword);
+            }
+        });
+
+        function validateEmail() {
+            const email = this.value;
+            const errorElement = document.getElementById('emailError');
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            
+            if (email.length === 0) {
+                clearError(this, errorElement);
+                return;
+            }
+
+            if (!emailRegex.test(email)) {
+                showError(this, errorElement, "Please enter a valid email address.");
+            } else {
+                clearError(this, errorElement);
+            }
+        }
+
+        function validatePassword() {
+            const password = this.value;
+            const errorElement = document.getElementById('passwordError');
+            
+            if (password.length === 0) {
+                clearError(this, errorElement);
+                return;
+            }
+
+            if (password.length < 1) {
+                showError(this, errorElement, "Please enter your password.");
+            } else {
+                clearError(this, errorElement);
+            }
+        }
+
+        function showError(inputElement, errorElement, message) {
+            inputElement.classList.add('error');
+            inputElement.classList.remove('valid');
+            errorElement.textContent = message;
+            errorElement.classList.add('show');
+        }
+
+        function clearError(inputElement, errorElement) {
+            inputElement.classList.remove('error');
+            inputElement.classList.add('valid');
+            errorElement.textContent = '';
+            errorElement.classList.remove('show');
+        }
+
+        // Form submission validation
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            let isValid = true;
+
+            // Validate all fields
+            const fields = [
+                { input: 'id_username', validator: validateEmail },
+                { input: 'id_password', validator: validatePassword }
+            ];
+
+            fields.forEach(field => {
+                const input = document.getElementById(field.input);
+                if (input) {
+                    field.validator.call(input);
+                    const errorElement = document.getElementById(field.input === 'id_username' ? 'emailError' : 'passwordError');
+                    if (errorElement && errorElement.classList.contains('show')) {
+                        isValid = false;
+                    }
+                }
+            });
+
+            if (!isValid) {
+                e.preventDefault();
+                alert('Please fix the errors before submitting.');
+            }
+        });
+    </script>
+</body>
+</html>
