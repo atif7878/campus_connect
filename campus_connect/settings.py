@@ -17,7 +17,10 @@ ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
 ]
-
+CSRF_TRUSTED_ORIGINS = [
+    'https://campus-connect-livid-xi.vercel.app',
+    'https://*.vercel.app',
+]
 # Ya dynamically Vercel domain allow karein
 if os.getenv('VERCEL_URL'):
     ALLOWED_HOSTS.append(os.getenv('VERCEL_URL'))
