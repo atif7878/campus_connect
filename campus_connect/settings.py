@@ -1,5 +1,3 @@
-# settings.py
-
 import os
 from pathlib import Path
 from dotenv import load_dotenv
@@ -12,7 +10,21 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = env.bool('DEBUG', default=False)
-ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['.vercel.app', 'localhost', '127.0.0.1'])
+
+ALLOWED_HOSTS = [
+    '.vercel.app',
+    'campus-connect-livid-xi.vercel.app',
+    'localhost',
+    '127.0.0.1',
+]
+
+# Ya dynamically Vercel domain allow karein
+if os.getenv('VERCEL_URL'):
+    ALLOWED_HOSTS.append(os.getenv('VERCEL_URL'))
+
+# Production mein sab Vercel domains allow karein
+if not DEBUG:
+    ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
