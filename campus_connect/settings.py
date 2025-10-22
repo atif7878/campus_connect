@@ -60,20 +60,26 @@ TEMPLATES = [
 WSGI_APPLICATION = 'campus_connect.wsgi.application'
 
 # Database Configuration - CORRECTED
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': env('DB_NAME'),
-        'USER': env('DB_USER'),
-        'PASSWORD': env('DB_PASSWORD'),
-        'HOST': env('DB_HOST'),
-        'PORT': env('DB_PORT'),
-        'OPTIONS': {
-            'connect_timeout': 10,
-        },
-        'CONN_MAX_AGE': 600,  # Connection pooling
+if os.getenv('VERCEL_ENV'):  # Vercel pe
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': env('DB_NAME'),
+            'USER': env('DB_USER'),
+            'PASSWORD': env('DB_PASSWORD'),
+            'HOST': env('DB_HOST'),
+            'PORT': env('DB_PORT'),
+            'CONN_MAX_AGE': 600,
+        }
     }
-}
+else:  # Local development
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
