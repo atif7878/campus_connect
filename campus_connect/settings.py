@@ -8,18 +8,24 @@ env = environ.Env()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.getenv('SECRET_KEY', 'fallback-secret-key-change-in-production')
+SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-test-key-12345')
+
+# Debug mode
 DEBUG = os.getenv('DEBUG', 'False').lower() in ('true', '1', 'yes')
 
-# ALLOWED_HOSTS
-ALLOWED_HOSTS = ['*'] if not DEBUG else ['localhost', '127.0.0.1']
-
-# CSRF
-CSRF_TRUSTED_ORIGINS = [
-    'https://campus-connect-livid-xi.vercel.app',
-    'https://*.vercel.app',
+# ALLOWED_HOSTS - FIXED
+ALLOWED_HOSTS = [
+    'campus-connect-livid-xi.vercel.app',  # Your exact domain
+    '.vercel.app',                          # All Vercel domains
+    'localhost',
+    '127.0.0.1',
 ]
 
+# Dynamically add Vercel URL
+if os.getenv('VERCEL_URL'):
+    ALLOWED_HOSTS.append(os.getenv('VERCEL_URL'))
+
+# Rest of your settings...
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -77,10 +83,22 @@ DATABASES = {
         'CONN_MAX_AGE': 600,
         'OPTIONS': {
             'connect_timeout': 10,
-            'sslmode': 'require',
         }
     }
 }
+
+# Password validation
+AUTH_PASSWORD_VALIDATORS = [
+    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
+]
+
+LANGUAGE_CODE = 'en-us'
+TIME_ZONE = 'UTC'
+USE_I18N = True
+USE_TZ = True
 
 # Static files
 STATIC_URL = '/static/'
@@ -88,10 +106,10 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# Security
-if not DEBUG:
-    SECURE_SSL_REDIRECT = False
-    SESSION_COOKIE_SECURE = True
-    CSRF_COOKIE_SECURE = True
+# CSRF Settings
+CSRF_TRUSTED_ORIGINS = [
+    'https://campus-connect-livid-xi.vercel.app',
+    'https://*.vercel.app',
+]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
