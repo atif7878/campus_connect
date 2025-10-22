@@ -8,26 +8,17 @@ env = environ.Env()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.getenv('SECRET_KEY')
-DEBUG = env.bool('DEBUG', default=False)
+SECRET_KEY = os.getenv('SECRET_KEY', 'fallback-secret-key-change-in-production')
+DEBUG = os.getenv('DEBUG', 'False').lower() in ('true', '1', 'yes')
 
-ALLOWED_HOSTS = [
-    '.vercel.app',
-    'campus-connect-livid-xi.vercel.app',
-    'localhost',
-    '127.0.0.1',
-]
+# ALLOWED_HOSTS
+ALLOWED_HOSTS = ['*'] if not DEBUG else ['localhost', '127.0.0.1']
+
+# CSRF
 CSRF_TRUSTED_ORIGINS = [
     'https://campus-connect-livid-xi.vercel.app',
     'https://*.vercel.app',
 ]
-# Ya dynamically Vercel domain allow karein
-if os.getenv('VERCEL_URL'):
-    ALLOWED_HOSTS.append(os.getenv('VERCEL_URL'))
-
-# Production mein sab Vercel domains allow karein
-if not DEBUG:
-    ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -74,58 +65,33 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'campus_connect.wsgi.application'
 
-# Database Configuration - CORRECTED
-if os.getenv('VERCEL_ENV'):  # Vercel pe
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': env('DB_NAME'),
-            'USER': env('DB_USER'),
-            'PASSWORD': env('DB_PASSWORD'),
-            'HOST': env('DB_HOST'),
-            'PORT': env('DB_PORT'),
-            'CONN_MAX_AGE': 600,
+# Database
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('DB_NAME'),
+        'USER': os.getenv('DB_USER'),
+        'PASSWORD': os.getenv('DB_PASSWORD'),
+        'HOST': os.getenv('DB_HOST'),
+        'PORT': os.getenv('DB_PORT'),
+        'CONN_MAX_AGE': 600,
+        'OPTIONS': {
+            'connect_timeout': 10,
+            'sslmode': 'require',
         }
     }
-else:  # Local development
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
-    }
-
-
-# Password validation
-AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
-]
-
-# Internationalization
-LANGUAGE_CODE = 'en-us'
-TIME_ZONE = 'UTC'
-USE_I18N = True
-USE_TZ = True
+}
 
 # Static files
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-]
-
-# Whitenoise configuration
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# Security
+if not DEBUG:
+    SECURE_SSL_REDIRECT = False
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
