@@ -12,15 +12,11 @@
   ],
   "routes": [
     {
-      "src": "/static/(.*)",
-      "dest": "/static/$1"
-    },
-    {
       "src": "/(.*)",
       "dest": "campus_connect/wsgi.py"
     }
   ],
   "env": {
-    "PYTHONUNBUFFERED": "1"
+    "DEBUG": "True"
   }
 }
