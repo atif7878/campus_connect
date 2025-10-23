@@ -188,15 +188,15 @@
         // Clear autofilled values on page load
         document.addEventListener('DOMContentLoaded', function() {
             // Clear any autofilled values after a short delay
-            setTimeout(() => {
-                const inputs = document.querySelectorAll('input[type="email"], input[type="password"]');
-                inputs.forEach(input => {
-                    // For fresh page loads, clear if it seems autofilled
-                    if (input.value && !input.hasAttribute('data-user-input')) {
-                        input.value = '';
-                    }
-                });
-            }, 100);
+            // setTimeout(() => {
+            //     const inputs = document.querySelectorAll('input[type="email"], input[type="password"]');
+            //     inputs.forEach(input => {
+            //         // For fresh page loads, clear if it seems autofilled
+            //         if (input.value && !input.hasAttribute('data-user-input')) {
+            //             input.value = '';
+            //         }
+            //     });
+            // }, 100);
 
             // Mark fields when user interacts with them
             document.querySelectorAll('input').forEach(input => {
