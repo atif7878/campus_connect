@@ -69,10 +69,10 @@
                 </div>
 
                 <!-- Fake hidden fields to trick browser autofill -->
-                <div style="display: none;">
+                <!-- <div style="display: none;">
                     <input type="text" name="fakeusername">
                     <input type="password" name="fakepassword">
-                </div>
+                </div> -->
 
                 <form method="post" action="{% url 'login' %}" id="loginForm" class="auth-form" novalidate autocomplete="off">
                     {% csrf_token %}
