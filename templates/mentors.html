@@ -1,0 +1,256 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mentors - Campus Connect</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f8f9fa;
+    }
+
+    .page-header {
+      background: url('https://via.placeholder.com/1600x400') center/cover no-repeat;
+      color: white;
+      text-align: center;
+      padding: 100px 20px;
+      position: relative;
+    }
+
+    .page-header::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      /* background: rgba(0, 0, 0, 0.55); */
+      background: rgb(3, 3, 88);
+    }
+
+    .page-header-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .page-header h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+    }
+
+    .voice-item {
+      background: #fff;
+      border-radius: 10px;
+      padding: 30px;
+      margin-bottom: 40px;
+      /* box-shadow: 0 2px 8px rgba(0,0,0,0.08); */
+      background-color: #ffffff;
+  border-radius: 12px;
+  /* padding: 20px; */
+  /* margin-bottom: 25px; */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  cursor: pointer;
+    }
+
+    .voice-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .voice-header img {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 20px;
+    }
+
+    .voice-header h5 {
+      margin: 0;
+      font-weight: 600;
+    }
+
+    .voice-intro {
+      color: #555;
+      font-size: 1rem;
+      margin-bottom: 20px;
+    }
+
+    .voice-audio {
+      text-align: center;
+    }
+
+    audio {
+      width: 100%;
+      outline: none;
+    }
+
+    .page-header {
+  background: url('https://via.placeholder.com/1600x400') center/cover no-repeat;
+  color: white;
+  text-align: center;
+  padding: 100px 20px;
+  position: relative;
+}
+
+.page-header::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(3, 3, 88, 0.8);
+}
+
+.page-header-content {
+  position: relative;
+  z-index: 1;
+}
+
+.page-header h1 {
+  font-size: 2.8rem;
+  font-weight: 700;
+}
+
+/* Mentor Cards */
+.mentor-card {
+  background: #fff;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.voice-item:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.mentor-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.mentor-img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+}
+
+.mentor-info {
+  padding: 20px;
+  text-align: center;
+}
+
+.mentor-info h5 {
+  font-weight: 700;
+  color: #0d1b6b;
+}
+
+.mentor-info p {
+  margin: 5px 0;
+  color: #666;
+}
+
+.mentor-info .desc {
+  font-size: 0.95rem;
+  color: #777;
+  margin-top: 10px;
+}
+
+  </style>
+</head>
+<body>
+
+  <!-- Header (You already have this) -->
+  <header>
+    <!-- Your header code here -->
+  </header>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="page-header-content">
+      <h1>Our Mentors</h1>
+      <p style="font-size: 25px;">Guiding your journey with wisdom and experience</p>
+    </div>
+  </section>
+
+  <!-- Voices Container -->
+  <main class="container py-5">
+
+    <!-- Voice Item 1 -->
+    <section class="voice-item">
+      <div class="voice-header">
+        <img src="{% static 'images/1861ba34-3e61-45bb-a865-76f10fe5f834.jpg' %}" alt="Sarah Ahmed">
+        <div>
+          <h5>Amir Ibn Shabir – ALUMNI IER 2022</h5>
+          <small>University of Punjab</small>
+        </div>
+      </div>
+      <p class="voice-intro">
+        An IER alumnus passionate about guiding students toward academic excellence and career growth. With firsthand experience in overcoming challenges, he inspires others to make confident and informed decisions about their future.
+      </p>
+      
+    </section>
+
+    <!-- Voice Item 1 -->
+    <section class="voice-item">
+      <div class="voice-header">
+        <img src="{% static 'images/aad7c821-7201-4946-83a7-566fae29bce9.jpg' %}" alt="Sarah Ahmed">
+        <div>
+          <h5>Sarmad Awais – ALUMNI BSSE 2023</h5>
+          <small>University of Punjab</small>
+        </div>
+      </div>
+      <p class="voice-intro">
+        A BSSE graduate dedicated to helping students build their coding skills from the ground up. He believes learning to code should be fun, practical, and empowering — turning beginners into confident problem-solvers.
+      </p>
+      
+    </section>
+
+    <!-- Voice Item 1 -->
+    <section class="voice-item">
+      <div class="voice-header">
+        <img src="{% static 'images/705da372-5abd-4874-89f2-55cf7a6a5eed.jpg' %}" alt="Sarah Ahmed">
+        <div>
+          <h5>Junaid Farooqi – Final Year IAS</h5>
+          <small>University of Punjab</small>
+        </div>
+      </div>
+      <p class="voice-intro">
+        An IAS student passionate about guiding freshmen through their academic journey. He aims to share insights, study tips, and real experiences to help new students adjust smoothly and make the most of their department life.
+      </p>
+      
+    </section>
+
+    <!-- Voice Item 1 -->
+    <section class="voice-item">
+      <div class="voice-header">
+        <img src="{% static 'images/2ceb3ec7-1333-4783-a2fb-363cc4f794fd.jpg' %}" alt="Sarah Ahmed">
+        <div>
+          <h5>Kamran Baloch – Final Year - Mass Communication</h5>
+          <small>University of Punjab</small>
+        </div>
+      </div>
+      <p class="voice-intro">
+        A final-year Mass Communication student dedicated to helping freshers navigate their career paths and overcome departmental challenges. He shares practical advice, real experiences, and guidance to help them build confidence and direction in their field.
+      </p>
+      
+    </section>
+
+    
+
+
+  </main>
+
+  <!-- Footer (You already have this) -->
+  <footer class="mt-5">
+    <!-- Your footer code here -->
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

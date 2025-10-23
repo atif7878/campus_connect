@@ -35,3 +35,12 @@ class HomeView(TemplateView):
 
 class CustomLogoutView(LogoutView):
     next_page = reverse_lazy('login')
+
+class ProfileView(TemplateView):
+    template_name = "profile.html"
+
+class VoiceOfExperienceView(TemplateView):
+    template_name = "voiceofexperience.html"
+
+class MentorsView(TemplateView):
+    template_name = "mentors.html"
