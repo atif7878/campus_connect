@@ -1,6 +1,8 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta name="google-site-verification" content="JyR9crenYl8YDPVGEvc4Mxa0n6owxkB99yYMhHm4-2s" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Campus Connect - Home</title>
@@ -81,7 +83,7 @@
       color: white;
       padding: 60px 20px;
       text-align: center;
-      border-radius: 10px;
+      /* border-radius: 10px; */
       width: 100%;
     }
 
@@ -142,7 +144,7 @@
         </p>
       </div>
       <div class="col-md-6">
-        <img src="images\51452000-b2e2-4551-ba53-1d7b8924a2c9.png" class="img-fluid rounded shadow" alt="About Image">
+        <img src="{% static 'images/51452000-b2e2-4551-ba53-1d7b8924a2c9.png' %}" class="img-fluid rounded shadow" alt="About Image">
       </div>
     </div>
   </section>
@@ -155,7 +157,7 @@
   <div class="row justify-content-center">
     <div class="col-md-8">
       <div class="card shadow-lg border-0 rounded-4 text-center p-4">
-        <img src="images/4c3a9e32-ab2f-4d64-a98a-ca1200b43074.png" 
+        <img src= "{% static 'images\4c3a9e32-ab2f-4d64-a98a-ca1200b43074.png' %}" 
              alt="Vision and Mission" 
              class="mb-4 rounded-3 mx-auto d-block" 
              style="max-height: 300px; width: auto;">
@@ -213,7 +215,7 @@
       </div>
     </div>
     <div class="text-center mt-4">
-      <a href="voices.html" class="btn btn-primary">Listen to More</a>
+      <a href="{% url 'voiceofexperience' %}" class="btn btn-primary">Listen to More</a>
     </div>
   </section>
 
@@ -221,7 +223,7 @@
   <section class=" join-section" >
     <h3>Join the Movement</h3>
     <p>Be part of something meaningful. Your voice, your experience, your journey — can inspire others.</p>
-    <a href="signup.html" class="btn btn-light btn-lg">Become a Member</a>
+    <a href="{% url 'signup' %}" class="btn btn-light btn-lg">Become a Member</a>
   </section>
 
   

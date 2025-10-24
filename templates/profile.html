@@ -1,0 +1,585 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Campus Connect</title>
+
+  <style>
+    /* Base style */
+.uni-link {
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+/* Hover effect */
+.uni-link:hover {
+  background-color: #007bff;   /* Bootstrap primary blue */
+  /* color: #fff !important;      White text */
+  transform: translateY(-3px); /* Slight lift */
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.4); /* Glow */
+}
+
+/* Ensure icons also turn white */
+/* .uni-link:hover i {
+  color: #fff !important;
+} */
+
+  </style>
+  <!-- Bootstrap 4 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+<!-- Ionicons -->
+<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
+<!-- AdminLTE main CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Tempusdominus Bootstrap 4 -->
+  <link rel="stylesheet" href="plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+  <!-- iCheck -->
+  <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <!-- JQVMap -->
+  <link rel="stylesheet" href="plugins/jqvmap/jqvmap.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="dist/css/adminlte.min.css?v=3.2.0">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <!-- Daterange picker -->
+  <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
+  <!-- summernote -->
+  <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
+<script data-cfasync="false" nonce="62487395-004c-4d35-88c8-25c3f7e60014">try{(function(w,d){!function(j,k,l,m){if(j.zaraz)console.error("zaraz is loaded twice");else{j[l]=j[l]||{};j[l].executed=[];j.zaraz={deferred:[],listeners:[]};j.zaraz._v="5870";j.zaraz._n="62487395-004c-4d35-88c8-25c3f7e60014";j.zaraz.q=[];j.zaraz._f=function(n){return async function(){var o=Array.prototype.slice.call(arguments);j.zaraz.q.push({m:n,a:o})}};for(const p of["track","set","debug"])j.zaraz[p]=j.zaraz._f(p);j.zaraz.init=()=>{var q=k.getElementsByTagName(m)[0],r=k.createElement(m),s=k.getElementsByTagName("title")[0];s&&(j[l].t=k.getElementsByTagName("title")[0].text);j[l].x=Math.random();j[l].w=j.screen.width;j[l].h=j.screen.height;j[l].j=j.innerHeight;j[l].e=j.innerWidth;j[l].l=j.location.href;j[l].r=k.referrer;j[l].k=j.screen.colorDepth;j[l].n=k.characterSet;j[l].o=(new Date).getTimezoneOffset();if(j.dataLayer)for(const t of Object.entries(Object.entries(dataLayer).reduce((u,v)=>({...u[1],...v[1]}),{})))zaraz.set(t[0],t[1],{scope:"page"});j[l].q=[];for(;j.zaraz.q.length;){const w=j.zaraz.q.shift();j[l].q.push(w)}r.defer=!0;for(const x of[localStorage,sessionStorage])Object.keys(x||{}).filter(z=>z.startsWith("_zaraz_")).forEach(y=>{try{j[l]["z_"+y.slice(7)]=JSON.parse(x.getItem(y))}catch{j[l]["z_"+y.slice(7)]=x.getItem(y)}});r.referrerPolicy="origin";r.src="/cdn-cgi/zaraz/s.js?z="+btoa(encodeURIComponent(JSON.stringify(j[l])));q.parentNode.insertBefore(r,q)};["complete","interactive"].includes(k.readyState)?zaraz.init():j.addEventListener("DOMContentLoaded",zaraz.init)}}(w,d,"zarazData","script");window.zaraz._p=async bs=>new Promise(bt=>{if(bs){bs.e&&bs.e.forEach(bu=>{try{const bv=d.querySelector("script[nonce]"),bw=bv?.nonce||bv?.getAttribute("nonce"),bx=d.createElement("script");bw&&(bx.nonce=bw);bx.innerHTML=bu;bx.onload=()=>{d.head.removeChild(bx)};d.head.appendChild(bx)}catch(by){console.error(`Error executing script: ${bu}\n`,by)}});Promise.allSettled((bs.f||[]).map(bz=>fetch(bz[0],bz[1])))}bt()});zaraz._p({"e":["(function(w,d){})(window,document)"]});})(window,document)}catch(e){throw fetch("/cdn-cgi/zaraz/t"),e;};</script></head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper">
+
+  <!-- Preloader -->
+  <!-- <div class="preloader flex-column justify-content-center align-items-center">
+    <img class="animation__shake" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+  </div> -->
+
+  <!-- Navbar -->
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="index3.html" class="nav-link">Home</a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="#" class="nav-link">Contact</a>
+      </li>
+    </ul>
+
+    <!-- Right navbar links -->
+    <ul class="navbar-nav ml-auto">
+      <!-- Navbar Search -->
+      <li class="nav-item">
+        <a class="nav-link" data-widget="navbar-search" href="#" role="button">
+          <i class="fas fa-search"></i>
+        </a>
+        <div class="navbar-search-block">
+          <form class="form-inline">
+            <div class="input-group input-group-sm">
+              <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+              <div class="input-group-append">
+                <button class="btn btn-navbar" type="submit">
+                  <i class="fas fa-search"></i>
+                </button>
+                <button class="btn btn-navbar" type="button" data-widget="navbar-search">
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </li>
+
+      <!-- Messages Dropdown Menu -->
+      <li class="nav-item dropdown">
+        
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+          <a href="#" class="dropdown-item">
+            <!-- Message Start -->
+            <div class="media">
+              <img src="dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+              <div class="media-body">
+                <h3 class="dropdown-item-title">
+                  Brad Diesel
+                  <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
+                </h3>
+                <p class="text-sm">Call me whenever you can...</p>
+                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+              </div>
+            </div>
+            <!-- Message End -->
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <!-- Message Start -->
+            <div class="media">
+              <img src="dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+              <div class="media-body">
+                <h3 class="dropdown-item-title">
+                  John Pierce
+                  <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
+                </h3>
+                <p class="text-sm">I got your message bro</p>
+                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+              </div>
+            </div>
+            <!-- Message End -->
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <!-- Message Start -->
+            <div class="media">
+              <img src="dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+              <div class="media-body">
+                <h3 class="dropdown-item-title">
+                  Nora Silvester
+                  <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
+                </h3>
+                <p class="text-sm">The subject goes here</p>
+                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+              </div>
+            </div>
+            <!-- Message End -->
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
+        </div>
+      </li>
+      <!-- Notifications Dropdown Menu -->
+      <li class="nav-item dropdown">
+        <a class="nav-link" data-toggle="dropdown" href="#">
+          <i class="far fa-bell"></i>
+          <span class="badge badge-warning navbar-badge">15</span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+          <span class="dropdown-item dropdown-header">15 Notifications</span>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <i class="fas fa-envelope mr-2"></i> 4 new messages
+            <span class="float-right text-muted text-sm">3 mins</span>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <i class="fas fa-users mr-2"></i> 8 friend requests
+            <span class="float-right text-muted text-sm">12 hours</span>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <i class="fas fa-file mr-2"></i> 3 new reports
+            <span class="float-right text-muted text-sm">2 days</span>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+          <i class="fas fa-expand-arrows-alt"></i>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-widget="control-sidebar" data-controlsidebar-slide="true" href="#" role="button">
+          <i class="fas fa-th-large"></i>
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="index3.html" class="brand-link">
+      <img src="{% static 'images/bd15a731-d2a9-4b5c-909c-14d97a458dce.jpg' %}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-light">Campus Connect</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="{% static 'images/18148.png' %}" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+          <a href="#" class="d-block">Huzaifa</a>
+        </div>
+      </div>
+
+      <!-- SidebarSearch Form -->
+      <div class="form-inline">
+        <div class="input-group" data-widget="sidebar-search">
+          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+          <div class="input-group-append">
+            <button class="btn btn-sidebar">
+              <i class="fas fa-search fa-fw"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <li class="nav-item menu-open">
+            <a href="#" class="nav-link active">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                HomePage
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            
+          
+          <li class="nav-item">
+  <a href="#" class="nav-link">
+    <i class="nav-icon fas fa-university"></i>
+    <p>
+      Universities
+      <i class="fas fa-angle-left right"></i>
+      <span class="badge badge-info right">13</span>
+    </p>
+  </a>
+  <ul class="nav nav-treeview">
+    <li class="nav-item">
+      <a href="forums/punjab-university.html" class="nav-link">
+        <i class="far fa-circle nav-icon"></i>
+        <p>University of the Punjab (PU)</p>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="forums/virtual-university.html" class="nav-link">
+        <i class="far fa-circle nav-icon"></i>
+        <p>Virtual University (VU)</p>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="forums/allama-iqbal-open-university.html" class="nav-link">
+        <i class="far fa-circle nav-icon"></i>
+        <p>Allama Iqbal Open University (AIOU)</p>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="forums/comsats-lahore.html" class="nav-link">
+        <i class="far fa-circle nav-icon"></i>
+        <p>COMSATS University Lahore</p>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="forums/fast-lahore.html" class="nav-link">
+        <i class="far fa-circle nav-icon"></i>
+        <p>FAST National University (NUCES)</p>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="forums/lums.html" class="nav-link">
+        <i class="far fa-circle nav-icon"></i>
+        <p>LUMS</p>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="forums/umtlahore.html" class="nav-link">
+        <i class="far fa-circle nav-icon"></i>
+        <p>UMT Lahore</p>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="forums/uet-lahore.html" class="nav-link">
+        <i class="far fa-circle nav-icon"></i>
+        <p>UET Lahore</p>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="forums/gcu-lahore.html" class="nav-link">
+        <i class="far fa-circle nav-icon"></i>
+        <p>Government College University (GCU)</p>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="forums/superior-university.html" class="nav-link">
+        <i class="far fa-circle nav-icon"></i>
+        <p>Superior University</p>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="forums/ucp.html" class="nav-link">
+        <i class="far fa-circle nav-icon"></i>
+        <p>University of Central Punjab (UCP)</p>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="forums/itu.html" class="nav-link">
+        <i class="far fa-circle nav-icon"></i>
+        <p>Information Technology University (ITU)</p>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="forums/minhaj-university.html" class="nav-link">
+        <i class="far fa-circle nav-icon"></i>
+        <p>Minhaj University Lahore (MUL)</p>
+      </a>
+    </li>
+  </ul>
+</li>
+
+          
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+                Pages
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="pages/examples/invoice.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>About Us</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="pages/examples/contacts.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Notifications</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="pages/examples/faq.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>FAQ</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="pages/examples/contact-us.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Contact us</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          
+          
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon far fa-circle text-danger"></i>
+              <p class="text">Important</p>
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon far fa-circle text-info"></i>
+              <p>Informational</p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+  <a href="{% url 'mentors' %}" class="nav-link">
+    <i class="nav-icon fas fa-user-friends text-primary"></i>
+    <p>Mentors</p>
+  </a>
+</li>
+
+          <li class="nav-item">
+  <a href="{% url 'voiceofexperience' %}" class="nav-link">
+    <i class="nav-icon far fa-circle text-warning"></i>
+    <p>Voice of Experience</p>&nbsp;<span class="badge badge-danger">New</span>
+  </a>
+</li>
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+       
+        <!-- /.row -->
+        <!-- Main row -->
+        
+        <!-- /.row (main row) -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  <!-- Categories Section -->
+<section class="content mt-4">
+  <div class="container-fluid">
+    <div class="card card-primary shadow-sm">
+      <div class="card-header bg-primary text-white">
+        <h3 class="card-title mb-0">
+          <i class="fas fa-university mr-2"></i> Universities in Lahore
+        </h3>
+      </div>
+
+      <div class="card-body">
+        <p class="text-muted mb-3">
+          Select a university below to view questions, answers, and discussions related to it.
+        </p>
+
+        <div class="row">
+          <div class="col-md-6 col-lg-4 mb-3">
+            <a href="forums/punjab-university.html" class="list-group-item list-group-item-action uni-link">
+              <i class="fas fa-building mr-2 text-primary"></i> University of the Punjab (PU)
+            </a>
+          </div>
+          <div class="col-md-6 col-lg-4 mb-3">
+            <a href="forums/virtual-university.html" class="list-group-item list-group-item-action uni-link">
+              <i class="fas fa-laptop mr-2 text-primary"></i> Virtual University (VU)
+            </a>
+          </div>
+          <div class="col-md-6 col-lg-4 mb-3">
+            <a href="forums/allama-iqbal-open-university.html" class="list-group-item list-group-item-action uni-link">
+              <i class="fas fa-book-open mr-2 text-primary"></i> Allama Iqbal Open University (AIOU)
+            </a>
+          </div>
+          <div class="col-md-6 col-lg-4 mb-3">
+            <a href="forums/comsats-lahore.html" class="list-group-item list-group-item-action uni-link">
+              <i class="fas fa-graduation-cap mr-2 text-primary"></i> COMSATS University Lahore
+            </a>
+          </div>
+          <div class="col-md-6 col-lg-4 mb-3">
+            <a href="forums/fast-lahore.html" class="list-group-item list-group-item-action uni-link">
+              <i class="fas fa-code mr-2 text-primary"></i> FAST National University (NUCES)
+            </a>
+          </div>
+          <div class="col-md-6 col-lg-4 mb-3">
+            <a href="forums/lums.html" class="list-group-item list-group-item-action uni-link">
+              <i class="fas fa-lightbulb mr-2 text-primary"></i> Lahore University of Management Sciences (LUMS)
+            </a>
+          </div>
+          <div class="col-md-6 col-lg-4 mb-3">
+            <a href="forums/umtlahore.html" class="list-group-item list-group-item-action uni-link">
+              <i class="fas fa-university mr-2 text-primary"></i> University of Management and Technology (UMT)
+            </a>
+          </div>
+          <div class="col-md-6 col-lg-4 mb-3">
+            <a href="forums/uet-lahore.html" class="list-group-item list-group-item-action uni-link">
+              <i class="fas fa-cogs mr-2 text-primary"></i> University of Engineering & Technology (UET)
+            </a>
+          </div>
+          <div class="col-md-6 col-lg-4 mb-3">
+            <a href="forums/gcu-lahore.html" class="list-group-item list-group-item-action uni-link">
+              <i class="fas fa-landmark mr-2 text-primary"></i> Government College University (GCU)
+            </a>
+          </div>
+          <div class="col-md-6 col-lg-4 mb-3">
+            <a href="forums/superior-university.html" class="list-group-item list-group-item-action uni-link">
+              <i class="fas fa-chalkboard-teacher mr-2 text-primary"></i> Superior University
+            </a>
+          </div>
+          <div class="col-md-6 col-lg-4 mb-3">
+            <a href="forums/ucp.html" class="list-group-item list-group-item-action uni-link">
+              <i class="fas fa-users mr-2 text-primary"></i> University of Central Punjab (UCP)
+            </a>
+          </div>
+          <div class="col-md-6 col-lg-4 mb-3">
+            <a href="forums/itu.html" class="list-group-item list-group-item-action uni-link">
+              <i class="fas fa-laptop-code mr-2 text-primary"></i> Information Technology University (ITU)
+            </a>
+          </div>
+          <div class="col-md-6 col-lg-4 mb-3">
+            <a href="forums/umt-lahore.html" class="list-group-item list-group-item-action uni-link">
+              <i class="fas fa-chart-line mr-2 text-primary"></i> Minhaj University Lahore (MUL)
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+    </div>
+  
+  <!-- /.content-wrapper -->
+  <footer class="main-footer">
+    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
+    All rights reserved.
+    <div class="float-right d-none d-sm-inline-block">
+      <b>Version</b> 3.2.0
+    </div>
+  </footer>
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery -->
+<script src="plugins/jquery/jquery.min.js"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="plugins/jquery-ui/jquery-ui.min.js"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+  $.widget.bridge('uibutton', $.ui.button)
+</script>
+<!-- Bootstrap 4 -->
+<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- ChartJS -->
+<script src="plugins/chart.js/Chart.min.js"></script>
+<!-- Sparkline -->
+<script src="plugins/sparklines/sparkline.js"></script>
+<!-- JQVMap -->
+<script src="plugins/jqvmap/jquery.vmap.min.js"></script>
+<script src="plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+<!-- jQuery Knob Chart -->
+<script src="plugins/jquery-knob/jquery.knob.min.js"></script>
+<!-- daterangepicker -->
+<script src="plugins/moment/moment.min.js"></script>
+<script src="plugins/daterangepicker/daterangepicker.js"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<!-- Summernote -->
+<script src="plugins/summernote/summernote-bs4.min.js"></script>
+<!-- overlayScrollbars -->
+<script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<!-- AdminLTE App -->
+<script src="dist/js/adminlte.js?v=3.2.0"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="dist/js/demo.js"></script>
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="dist/js/pages/dashboard.js"></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"version":"2024.11.0","token":"2437d112162f4ec4b63c3ca0eb38fb20","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Bootstrap 4 -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- AdminLTE App -->
+<script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
+
+</body>
+</html>
