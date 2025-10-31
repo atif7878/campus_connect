@@ -39,8 +39,26 @@ class CustomLogoutView(LogoutView):
 class ProfileView(TemplateView):
     template_name = "profile.html"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if self.request.user.is_authenticated:
+            context['user_display_name'] = self.request.user.get_full_name() or self.request.user.email
+        else:
+            context['user_display_name'] = "Guest"
+        return context
+
+
 class VoiceOfExperienceView(TemplateView):
     template_name = "voiceofexperience.html"
 
 class MentorsView(TemplateView):
     template_name = "mentors.html"
+
+class AboutUsView(TemplateView):
+    template_name = "aboutus.html"
+
+class ContactUsView(TemplateView):
+    template_name = "contactus.html"
+
+class NotificationView(TemplateView):
+    template_name = "notifications.html"

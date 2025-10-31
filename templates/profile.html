@@ -76,10 +76,10 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="index3.html" class="nav-link">Home</a>
+        <a href="{% url 'profile' %}" class="nav-link">Home</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contact</a>
+        <a href="{% url 'contact-us' %}" class="nav-link">Contact</a>
       </li>
     </ul>
 
@@ -206,22 +206,24 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <a href="#" class="brand-link">
       <img src="{% static 'images/bd15a731-d2a9-4b5c-909c-14d97a458dce.jpg' %}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">Campus Connect</span>
     </a>
 
     <!-- Sidebar -->
     <div class="sidebar">
-      <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-          <img src="{% static 'images/18148.png' %}" class="img-circle elevation-2" alt="User Image">
-        </div>
-        <div class="info">
-          <a href="#" class="d-block">Huzaifa</a>
-        </div>
+    <!-- Sidebar user panel (optional) -->
+    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+      <div class="image">
+        <img src="{% static 'images/18148.png' %}" class="img-circle elevation-2" alt="User Image">
+        {# Optional: If you add a profile_image field to User model later, use: src="{{ user.profile_image.url }}" #}
       </div>
+      <div class="info">
+        <a href="#" class="d-block">{{ user_display_name }}</a>
+        {# Falls back to "Guest" if not logged in #}
+      </div>
+    </div>
 
       <!-- SidebarSearch Form -->
       <div class="form-inline">
@@ -261,79 +263,79 @@
   </a>
   <ul class="nav nav-treeview">
     <li class="nav-item">
-      <a href="forums/punjab-university.html" class="nav-link">
+      <a href="#" class="nav-link">
         <i class="far fa-circle nav-icon"></i>
         <p>University of the Punjab (PU)</p>
       </a>
     </li>
     <li class="nav-item">
-      <a href="forums/virtual-university.html" class="nav-link">
+      <a href="#" class="nav-link">
         <i class="far fa-circle nav-icon"></i>
         <p>Virtual University (VU)</p>
       </a>
     </li>
     <li class="nav-item">
-      <a href="forums/allama-iqbal-open-university.html" class="nav-link">
+      <a href="#" class="nav-link">
         <i class="far fa-circle nav-icon"></i>
         <p>Allama Iqbal Open University (AIOU)</p>
       </a>
     </li>
     <li class="nav-item">
-      <a href="forums/comsats-lahore.html" class="nav-link">
+      <a href="#" class="nav-link">
         <i class="far fa-circle nav-icon"></i>
         <p>COMSATS University Lahore</p>
       </a>
     </li>
     <li class="nav-item">
-      <a href="forums/fast-lahore.html" class="nav-link">
+      <a href="#" class="nav-link">
         <i class="far fa-circle nav-icon"></i>
         <p>FAST National University (NUCES)</p>
       </a>
     </li>
     <li class="nav-item">
-      <a href="forums/lums.html" class="nav-link">
+      <a href="#" class="nav-link">
         <i class="far fa-circle nav-icon"></i>
         <p>LUMS</p>
       </a>
     </li>
     <li class="nav-item">
-      <a href="forums/umtlahore.html" class="nav-link">
+      <a href="#" class="nav-link">
         <i class="far fa-circle nav-icon"></i>
         <p>UMT Lahore</p>
       </a>
     </li>
     <li class="nav-item">
-      <a href="forums/uet-lahore.html" class="nav-link">
+      <a href="#" class="nav-link">
         <i class="far fa-circle nav-icon"></i>
         <p>UET Lahore</p>
       </a>
     </li>
     <li class="nav-item">
-      <a href="forums/gcu-lahore.html" class="nav-link">
+      <a href="#" class="nav-link">
         <i class="far fa-circle nav-icon"></i>
         <p>Government College University (GCU)</p>
       </a>
     </li>
     <li class="nav-item">
-      <a href="forums/superior-university.html" class="nav-link">
+      <a href="#" class="nav-link">
         <i class="far fa-circle nav-icon"></i>
         <p>Superior University</p>
       </a>
     </li>
     <li class="nav-item">
-      <a href="forums/ucp.html" class="nav-link">
+      <a href="#" class="nav-link">
         <i class="far fa-circle nav-icon"></i>
         <p>University of Central Punjab (UCP)</p>
       </a>
     </li>
     <li class="nav-item">
-      <a href="forums/itu.html" class="nav-link">
+      <a href="#" class="nav-link">
         <i class="far fa-circle nav-icon"></i>
         <p>Information Technology University (ITU)</p>
       </a>
     </li>
     <li class="nav-item">
-      <a href="forums/minhaj-university.html" class="nav-link">
+      <a href="#" class="nav-link">
         <i class="far fa-circle nav-icon"></i>
         <p>Minhaj University Lahore (MUL)</p>
       </a>
@@ -352,25 +354,25 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/examples/invoice.html" class="nav-link">
+                <a href="{% url 'about-us' %}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>About Us</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/examples/contacts.html" class="nav-link">
+                <a href="{% url 'notifications' %}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Notifications</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/examples/faq.html" class="nav-link">
+                <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>FAQ</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/examples/contact-us.html" class="nav-link">
+                <a href="{% url 'contact-us' %}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Contact us</p>
                 </a>
@@ -448,67 +450,67 @@
 
         <div class="row">
           <div class="col-md-6 col-lg-4 mb-3">
-            <a href="forums/punjab-university.html" class="list-group-item list-group-item-action uni-link">
+            <a href="#" class="list-group-item list-group-item-action uni-link">
               <i class="fas fa-building mr-2 text-primary"></i> University of the Punjab (PU)
             </a>
           </div>
           <div class="col-md-6 col-lg-4 mb-3">
-            <a href="forums/virtual-university.html" class="list-group-item list-group-item-action uni-link">
+            <a href="#" class="list-group-item list-group-item-action uni-link">
               <i class="fas fa-laptop mr-2 text-primary"></i> Virtual University (VU)
             </a>
           </div>
           <div class="col-md-6 col-lg-4 mb-3">
-            <a href="forums/allama-iqbal-open-university.html" class="list-group-item list-group-item-action uni-link">
+            <a href="#" class="list-group-item list-group-item-action uni-link">
               <i class="fas fa-book-open mr-2 text-primary"></i> Allama Iqbal Open University (AIOU)
             </a>
           </div>
           <div class="col-md-6 col-lg-4 mb-3">
-            <a href="forums/comsats-lahore.html" class="list-group-item list-group-item-action uni-link">
+            <a href="#" class="list-group-item list-group-item-action uni-link">
               <i class="fas fa-graduation-cap mr-2 text-primary"></i> COMSATS University Lahore
             </a>
           </div>
           <div class="col-md-6 col-lg-4 mb-3">
-            <a href="forums/fast-lahore.html" class="list-group-item list-group-item-action uni-link">
+            <a href="#" class="list-group-item list-group-item-action uni-link">
               <i class="fas fa-code mr-2 text-primary"></i> FAST National University (NUCES)
             </a>
           </div>
           <div class="col-md-6 col-lg-4 mb-3">
-            <a href="forums/lums.html" class="list-group-item list-group-item-action uni-link">
+            <a href="#" class="list-group-item list-group-item-action uni-link">
               <i class="fas fa-lightbulb mr-2 text-primary"></i> Lahore University of Management Sciences (LUMS)
             </a>
           </div>
           <div class="col-md-6 col-lg-4 mb-3">
-            <a href="forums/umtlahore.html" class="list-group-item list-group-item-action uni-link">
+            <a href="#" class="list-group-item list-group-item-action uni-link">
               <i class="fas fa-university mr-2 text-primary"></i> University of Management and Technology (UMT)
             </a>
           </div>
           <div class="col-md-6 col-lg-4 mb-3">
-            <a href="forums/uet-lahore.html" class="list-group-item list-group-item-action uni-link">
+            <a href="#" class="list-group-item list-group-item-action uni-link">
               <i class="fas fa-cogs mr-2 text-primary"></i> University of Engineering & Technology (UET)
             </a>
           </div>
           <div class="col-md-6 col-lg-4 mb-3">
-            <a href="forums/gcu-lahore.html" class="list-group-item list-group-item-action uni-link">
+            <a href="#" class="list-group-item list-group-item-action uni-link">
               <i class="fas fa-landmark mr-2 text-primary"></i> Government College University (GCU)
             </a>
           </div>
           <div class="col-md-6 col-lg-4 mb-3">
-            <a href="forums/superior-university.html" class="list-group-item list-group-item-action uni-link">
+            <a href="#" class="list-group-item list-group-item-action uni-link">
               <i class="fas fa-chalkboard-teacher mr-2 text-primary"></i> Superior University
             </a>
           </div>
           <div class="col-md-6 col-lg-4 mb-3">
-            <a href="forums/ucp.html" class="list-group-item list-group-item-action uni-link">
+            <a href="#" class="list-group-item list-group-item-action uni-link">
               <i class="fas fa-users mr-2 text-primary"></i> University of Central Punjab (UCP)
             </a>
           </div>
           <div class="col-md-6 col-lg-4 mb-3">
-            <a href="forums/itu.html" class="list-group-item list-group-item-action uni-link">
+            <a href="#" class="list-group-item list-group-item-action uni-link">
               <i class="fas fa-laptop-code mr-2 text-primary"></i> Information Technology University (ITU)
             </a>
           </div>
           <div class="col-md-6 col-lg-4 mb-3">
-            <a href="forums/umt-lahore.html" class="list-group-item list-group-item-action uni-link">
+            <a href="#" class="list-group-item list-group-item-action uni-link">
               <i class="fas fa-chart-line mr-2 text-primary"></i> Minhaj University Lahore (MUL)
             </a>
           </div>

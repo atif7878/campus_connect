@@ -19,7 +19,8 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
-from core.views import HomeView, SignupView, CustomLoginView, CustomLogoutView, ProfileView, VoiceOfExperienceView, MentorsView
+from core.views import HomeView, SignupView, CustomLoginView, CustomLogoutView, ProfileView, VoiceOfExperienceView, \
+    MentorsView, AboutUsView, ContactUsView, NotificationView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,6 +31,9 @@ urlpatterns = [
     path('voiceofexperience/', VoiceOfExperienceView.as_view(), name='voiceofexperience'),
     path('mentors/', MentorsView.as_view(), name='mentors'),
     path('logout/', CustomLogoutView.as_view(), name='logout'),
+    path('about-us/', AboutUsView.as_view(), name='about-us'),
+    path('contact-us/', ContactUsView.as_view(), name='contact-us'),
+    path('notifications/', NotificationView.as_view(), name='notifications'),
 ]
 
 # Static files - only development mein
